@@ -1,6 +1,7 @@
 describe Pizza do
 
-  let(:pizza) { Pizza.new("Ham", "Awesomeness on a pizza") }
+  let(:toppings) { [Topping.new(5), Topping.new(10), Topping.new(8)] }
+  let(:pizza) { Pizza.new("Ham", "Awesomeness on a pizza", toppings) }
 
   describe '#initialize' do
     it 'should error with invalid arguments' do
@@ -20,10 +21,17 @@ describe Pizza do
     end
 
     it 'has many toppings' do
-      pizza.should_recieve(:toppings).and_return([Topping.new])
-      pizza.toppings.should eq [Topping.new]
+      pizza.toppings.should eq [toppings]
     end
 
+  end
+
+  describe '#required_bake_time' do
+    it 'returns correct time' do
+      time = 900 + pizza.toppings.map{|topping| topping.bake_time}.max
+
+      pizza.required_bake_time.should eq time
+    end
   end
 
 end
