@@ -35,11 +35,28 @@ describe Pizza do
   end
 
   describe '#required_bake_time' do
-    it 'returns correct time' do
 
-      # required time is 900 + max of bake times of toppings
+    context 'with toppings' do
 
-      pizza.required_bake_time.should eq 910
+      it 'returns correct time with toppings' do
+        pizza.required_bake_time.should eq 910
+      end
+    end
+
+    context 'with other toppings' do
+
+      let (:pizza) {Pizza.new("Ham", "Awesomeness on a pizza", [toppings[0], toppings[2]])}
+
+      it 'returns correct time without toppings' do
+        pizza.required_bake_time.should eq 908
+      end
+    end
+
+    context 'without toppings' do
+      let (:pizza) {Pizza.new("Ham", "Awesomeness on a pizza", [])}
+      it 'returns correct time without toppings' do
+        pizza.required_bake_time.should eq 900
+      end
     end
   end
 
@@ -65,11 +82,13 @@ describe Pizza do
     end
 
     context 'after baking' do
-      before { pizza.bake(10000000) }
+      before { pizza.bake(pizza.required_bake_time) }
       it 'should be true' do
         pizza.baked?.should be_true
       end
     end
   end
+
+  
 
 end
