@@ -19,6 +19,9 @@ describe Pizza do
       pizza.time_baked.should eq 0
     end
 
+    it 'has many toppings' do
+      pizza.should_recieve(:toppings).and_return([Topping.new])
+      pizza.toppings.should eq [Topping.new]
     end
 
   end
