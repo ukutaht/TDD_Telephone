@@ -38,4 +38,20 @@ describe Pizza do
     end
   end
 
+  describe '#bake(time)' do
+    it "should get baked" do
+      pizza.should respond_to(:bake)
+    end
+
+    it "should take an argument" do
+      expect {pizza.bake}.to raise_error(ArgumentError)
+    end
+
+    it "should respond to time parameter" do
+      expect {pizza.bake(10)}.to change{ pizza.time_baked }.by 10
+    end
+  end
+
+  
+
 end
