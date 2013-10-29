@@ -9,7 +9,20 @@ class Pizza
   end
 
   def required_bake_time
-    @time_baked = 910
+   
+    if toppings.any?
+      900 + toppings.map{|topping| topping.bake_time}.max
+    else
+      900
+    end
+  #   if @toppings.length > 0 #&& @toppings.length < 2 
+  #     @time_baked = 910
+  #   # else @toppings.length > 0 && @toppings.length <= 2
+  # elsif @toppings.length >= 2
+  #     @time_baked = 908
+  #   else
+  #     @time_baked = 900
+    # end
   end
 
   def bake(time)
@@ -19,7 +32,7 @@ class Pizza
   end
 
   def baked?
-    if @time_baked >= 910 
+    if @time_baked >= 908 
       true
     else
       false
@@ -38,8 +51,10 @@ end
 
 class Topping
 
-  def initialize(quantity)
-    @quantity = quantity 
+  attr_reader :bake_time 
+ 
+  def initialize(bake_time)
+    @bake_time = bake_time 
   end 
 
 end

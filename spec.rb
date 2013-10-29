@@ -29,6 +29,7 @@ describe Pizza do
     it 'has many toppings' do
       pizza.toppings.should eq toppings
     end
+
   end
 
   describe '#required_bake_time' do
