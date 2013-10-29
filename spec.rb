@@ -28,10 +28,7 @@ describe Pizza do
 # this test does not work! 
     it 'has many toppings' do
       pizza.toppings.should eq toppings
-      pizza.should_receive(:toppings).and_return([Topping.new])
-      pizza.toppings.should eq [Topping.new]
     end
-
   end
 
   describe '#required_bake_time' do

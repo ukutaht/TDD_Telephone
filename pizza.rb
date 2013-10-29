@@ -12,6 +12,27 @@ class Pizza
     @time_baked = 910
   end
 
+  def bake(time)
+    baked? == false 
+    @time_baked += time
+    
+  end
+
+  def baked?
+    if @time_baked >= 910 
+      true
+    else
+      false
+    end
+    
+  end
+
+
+  # def time_baked
+  #   time_baked + 10 
+  # end
+
+
 
 end
 
