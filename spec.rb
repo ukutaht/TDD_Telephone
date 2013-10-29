@@ -1,3 +1,6 @@
+require 'rspec'
+require_relative "pizza"
+
 describe Pizza do
 
   let(:toppings) { [Topping.new(5), Topping.new(10), Topping.new(8)] }
@@ -21,16 +24,17 @@ describe Pizza do
     end
 
     it 'has many toppings' do
-      pizza.toppings.should eq [toppings]
+      pizza.toppings.should eq toppings
     end
 
   end
 
   describe '#required_bake_time' do
     it 'returns correct time' do
-      time = 900 + pizza.toppings.map{|topping| topping.bake_time}.max
 
-      pizza.required_bake_time.should eq time
+      # required time is 900 + max of bake times of toppings
+
+      pizza.required_bake_time.should eq 910
     end
   end
 
