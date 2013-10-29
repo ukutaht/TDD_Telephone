@@ -52,6 +52,19 @@ describe Pizza do
     end
   end
 
-  
+  describe '#baked?' do
+    context 'before baking' do
+      it 'should be false' do
+        pizza.baked?.should be_false
+      end
+    end
+
+    context 'after baking' do
+      before { pizza.bake(10000000) }
+      it 'should be true' do
+        pizza.baked?.should be_true
+      end
+    end
+  end
 
 end
